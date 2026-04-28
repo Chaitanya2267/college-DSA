@@ -11,11 +11,11 @@ public class LinkedQueue {
     }
 
     private Node front = null; // Corresponds to FRONT
-    private Node rear = null;  // Corresponds to REAR
+    private Node rear = null; // Corresponds to REAR
     private Node avail = null; // Corresponds to AVAIL (memory pool)
 
     /**
-     * Procedure 6.15: LINKQ_INSERT
+     * Procedure 6.15: LINK_INSERT
      * Inserts an ITEM into the rear of the queue.
      */
     public void insert(int item) {
@@ -41,12 +41,12 @@ public class LinkedQueue {
             rear.link = newNode;
             rear = newNode;
         }
-        
+
         System.out.println("Inserted: " + item);
     }
 
     /**
-     * Procedure 6.16: LINKQ_DELETE
+     * Procedure 6.16: LINK_DELETE
      * Deletes the front element of the queue and returns it.
      */
     public Integer delete() {
@@ -64,7 +64,7 @@ public class LinkedQueue {
 
         // 4. FRONT = LINK[TEMP]
         front = front.link;
-        
+
         // Logical check: If front becomes null, rear must also be null
         if (front == null) {
             rear = null;
@@ -77,6 +77,20 @@ public class LinkedQueue {
         return item;
     }
 
+    // PEEK (FRONT ELEMENT)
+    public Integer peek() {
+        if (front == null) {
+            System.out.println("Queue is empty");
+            return null;
+        }
+        return front.info;
+    }
+
+    // CHECK EMPTY
+    public boolean isEmpty() {
+        return front == null;
+    }
+
     public void display() {
         Node current = front;
         System.out.print("Queue (Front to Rear): ");
@@ -85,5 +99,28 @@ public class LinkedQueue {
             current = current.link;
         }
         System.out.println();
+    }
+
+    public static void main(String[] args) {
+        LinkedQueue queue = new LinkedQueue();
+
+        queue.insert(10);
+        queue.insert(20);
+        queue.insert(30);
+
+        queue.display();
+
+        System.out.println("Peek: " + queue.peek());
+
+        System.out.println("Deleted: " + queue.delete());
+        queue.display();
+
+        System.out.println("Deleted: " + queue.delete());
+        System.out.println("Deleted: " + queue.delete());
+
+        // Underflow case
+        System.out.println("Deleted: " + queue.delete());
+
+        System.out.println("Is Empty: " + queue.isEmpty());
     }
 }

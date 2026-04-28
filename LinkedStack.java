@@ -10,7 +10,7 @@ public class LinkedStack {
         }
     }
 
-    private Node top = null;   // Corresponds to TOP
+    private Node top = null; // Corresponds to TOP
     private Node avail = null; // Corresponds to AVAIL (the free node pool)
 
     /**
@@ -18,14 +18,14 @@ public class LinkedStack {
      * Adds an ITEM to the top of the stack.
      */
     public void push(int item) {
-        // 1. [Available space?] 
-        // In modern Java, we'd just use 'new Node()'. 
+        // 1. [Available space?]
+        // In modern Java, we'd just use 'new Node()'.
         // To mimic the AVAIL logic:
         Node newNode;
         if (avail == null) {
-            // In a real system, we'd just create a new one, 
+            // In a real system, we'd just create a new one,
             // but if simulating a fixed pool:
-            newNode = new Node(item); 
+            newNode = new Node(item);
         } else {
             // 2. [Remove first node from AVAIL list]
             newNode = avail;
@@ -40,7 +40,7 @@ public class LinkedStack {
 
         // 5. Set TOP := NEW
         top = newNode;
-        
+
         System.out.println("Pushed: " + item);
     }
 
@@ -69,6 +69,20 @@ public class LinkedStack {
         return item;
     }
 
+    // PEEK
+    public Integer peek() {
+        if (top == null) {
+            System.out.println("Stack is empty");
+            return null;
+        }
+        return top.info;
+    }
+
+    // CHECK EMPTY
+    public boolean isEmpty() {
+        return top == null;
+    }
+
     public void display() {
         Node current = top;
         System.out.print("Stack (Top to Bottom): ");
@@ -77,5 +91,28 @@ public class LinkedStack {
             current = current.link;
         }
         System.out.println("NULL");
+    }
+
+    public static void main(String[] args) {
+        LinkedStack stack = new LinkedStack();
+
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+
+        stack.display();
+
+        System.out.println("Peek: " + stack.peek());
+
+        System.out.println("Popped: " + stack.pop());
+        stack.display();
+
+        System.out.println("Popped: " + stack.pop());
+        System.out.println("Popped: " + stack.pop());
+
+        // Underflow case
+        System.out.println("Popped: " + stack.pop());
+
+        System.out.println("Is Empty: " + stack.isEmpty());
     }
 }

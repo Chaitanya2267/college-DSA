@@ -46,21 +46,21 @@ public class StackProgram {
             int size;
             System.out.print("Enter size of stack: ");
             size = sc.nextInt();
-            
+
             Stack s = new Stack(size);
-            
+
             System.out.println("Enter " + size + " elements to push:");
             for (int i = 0; i < size; i++) {
                 int val = sc.nextInt();
                 s.push(val);
             }
-            
+
             System.out.println("\nCurrent stack:");
             s.display();
-            
+
             System.out.println("\nPerforming pop:");
             s.pop();
-            
+
             System.out.println("\nAfter pop:");
             s.display();
         }

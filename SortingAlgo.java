@@ -127,7 +127,6 @@ class SortingAlgo {
         mergeSortHelper(arr, 0, n - 1);
     }
 
-    
     public static int partition(int[] arr, int low, int high) {
 
         int pivot = arr[low];

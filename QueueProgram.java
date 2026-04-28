@@ -49,21 +49,21 @@ public class QueueProgram {
             int size;
             System.out.print("Enter size of queue: ");
             size = sc.nextInt();
-            
+
             Queue q = new Queue(size);
-            
+
             System.out.println("Enter " + size + " elements to enqueue:");
             for (int i = 0; i < size; i++) {
                 int val = sc.nextInt();
                 q.enqueue(val);
             }
-            
+
             System.out.println("\nCurrent queue:");
             q.display();
-            
+
             System.out.println("\nPerforming dequeue:");
             q.dequeue();
-            
+
             System.out.println("\nAfter dequeue:");
             q.display();
         }
